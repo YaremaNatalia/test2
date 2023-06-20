@@ -5,15 +5,21 @@ import styled from "styled-components";
 
 const Title = styled.h2`
   border: 1px solid #3c3a3a;
-  /* background-color: ${({ primary }) => (primary ? "#99def5" : "#f599e9")}; */
+  /* background-color: ${({ primary }) =>
+    primary ? "#99def5" : "#f599e9"};  деструктиризація */
   background-color: ${(props) =>
     props.primary
       ? "#99def5"
-      : "#f599e9"}; //передача пропсу з умовою через тернарний оператор(якщо є primary  пропс то колір блакитний)
+      : "#f599e9"}; //!передача пропсу з умовою через тернарний оператор(якщо є primary  пропс то колір блакитний)
   text-transform: uppercase;
   font-size: 20px;
   font-weight: bold;
   padding: 25px;
+  margin: ${({ data = "0" }) =>
+    data}; //!задаємо пропсу дефолтне значення, якщо дати не буде, застосується дефолт
+  /* margin: ${({ data }) =>
+    data || "0"}; // !аналогічний запис тернарника, умова або */
+  /* margin: ${({ data }) => (data ? data : "0")}; */
   text-align: center;
 `;
 const Statistics = styled.section`
@@ -55,7 +61,9 @@ export const StyledComponent = ({ title, stats }) => {
     <Statistics>
       <Title>{title}</Title>
       {/* передача пропс primary в заголовку */}
-      <Title primary>{title}</Title>
+      <Title primary data="10px">
+        {title}
+      </Title>
       <StatList>
         {stats.map(({ id, label, percentage }) => {
           return (
