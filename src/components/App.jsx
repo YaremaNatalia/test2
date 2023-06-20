@@ -16,8 +16,6 @@ export const App = () => {
         // color: '#010101',
       }}
     >
-   
-    
       <StyledComponent title="Upload stats" stats={data} />
     </div>
   );
